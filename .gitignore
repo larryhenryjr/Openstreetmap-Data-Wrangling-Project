@@ -1,0 +1,8 @@
+.github/**
+IrvingTX-W-LasColinas-Formatted.osm.xml
+nodes.csv
+nodes_tags.csv
+ways.csv
+ways_nodes.csv
+ways_tags.csv
+IrvingTX-W-LasColinas-Queries.sql
