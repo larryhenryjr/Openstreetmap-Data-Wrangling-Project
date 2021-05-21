@@ -22,10 +22,10 @@ dataset.
 
 
 ## Problems Encountered in the Map
-After initially downloading a small sample size of the Charlotte area and running it against a provisional data.py file, I noticed five main problems with the data, which I will discuss in the following order:
+After initially downloading a small sample size of the Irving, Texas, area and running it against a provisional data.py file, I noticed five main problems with the data, which I will discuss in the following order:
 
 
-- Over­abbreviated street names *(“S Tryon St Ste 105”)*
+- Abbreviated street name *(“N Macarthur Blvd”)*
 - Inconsistent postal codes *(“NC28226”, “28226­0783”, “28226”)*
 - “Incorrect” postal codes (Charlotte area zip codes all begin with “282” however a large portion of all documented zip codes were outside this region.)
 - Second­ level `“k”` tags with the value `"type"`(which overwrites the element’s previously processed `node[“type”]field`).
@@ -140,7 +140,7 @@ WHERE id IN (SELECT DISTINCT(id) FROM nodes_tags WHERE key='postcode' AND value=
 
  It turns out, *“280 North Old Woodward Avenue, 48009”* is in Birmingham, Michigan. All data in this document, including those not shown here, are internally consistent and verifiable, except for the latitude and longitude. These coordinates are indeed in Charlotte, NC. I’m not sure about the source of the error, but we can guess it was most likely sitting in front of a computer before this data entered the map. The document can be removed from the database easily enough.
 
-# Data Overview and Additional Ideas
+# Data Overview and Other Ideas
 This section contains basic statistics about the dataset, the MongoDB queries used to gather them, and some additional ideas about the data in context.
 
 ### File sizes
