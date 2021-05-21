@@ -1,0 +1,20 @@
+References:
+
+1. The area selected for this project is the Last Colinas area in Irving, Texas. I've lived in the area for several years now. Therefore, I was interested in this area to work on for this project using OSM data for this city.
+
+https://www.openstreetmap.org/node/16173236
+
+
+2. I utilized Udacity's knowledge center to help address issues with the write method in my code displaying binary instead of string formats. This forum help me resolve the issue.
+
+https://knowledge.udacity.com/questions/332545
+
+3. The following wiki assisted in understanding the OSM XML file layout and nodes/tags.
+
+http://wiki.openstreetmap.org/wiki/Map_Features
+http://wiki.openstreetmap.org/wiki/OSM_XML
+
+
+4. To help in creating my code for data cleaning and auditing the OSM file, I used the following link.
+
+https://docs.python.org/2/library/xml.etree.elementtree.html

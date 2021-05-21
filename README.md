@@ -1,33 +1,14 @@
-# OpenStreetMap Data Case Study
+# Udacity OpenStreet Map Project
 
-## Project Overview
-This project is part of Udacity Data Analyst Nanodegree course for Data Wrangling. The main point of this Project is to learn how to access data and perform 
-data cleaning with Python. First, I will access data in an XML file from OpenStreet Map and perform some data cleaning. Then, the cleaned data will then be imported 
-into a DBMS or MongoDB. In this case, I will use a DBMS and run a few SQL queries on the cleaned data to complete the project.
-
-
-### Map Area
-Irving, TX, United States
-
-- [https://www.openstreetmap.org/relation/5748832](https://www.openstreetmap.org/relation/5748832)
-
-<p align="center">
-  <img src=images/IrvingTX-W-LasColinas-area.png alt="LasColinas-area-IrvingTX" style="width: 350px;" style="height: 350px;" />
-</p>
-
-
-### Software and Application
-- Jupyter Notebook
-- Spyder
-- Python 3
-- sqlite3
-- Excel
-- SQLiteStudio
-
+As part of the Udacity Data Analyst Nanodegree course for Data Wrangling, I created this repo was to house my final work files for the OpenStreet Map (OSM) project.
+In this project, I downloaded OSM data, audited several fields, iteratively cleaned the data while parsing the OSM into to five CSV files before importing the CSVs 
+to SQL tables where I used SQL to query the data.
 
 This repository consists of the following files : 
 
 - __README.md__ : ReadMe file for this project containing an overal summary and details on the work that was done to complete this project.
+
+- __project_report.md__ : The final project report that documents the work done on this project including the data wrangling process.
 
 - __data.py__ : Python script containing the codes for gathering and extracting data from the OpenStreet Map (OSM) file. Data cleansing and manipulation is conducted per project 
 requirements. Also the cleaned data is stored in CSV files.
