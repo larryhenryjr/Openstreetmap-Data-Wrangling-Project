@@ -1,6 +1,6 @@
 References:
 
-1. The area selected for this project is the Last Colinas area in Irving, Texas. I've lived in the area for several years now. Therefore, I was interested in this area to work on for this project using OSM data for this city.
+1. The area selected for this project is the Las Colinas area in Irving, Texas. I've lived in the area for several years now. Therefore, I was interested in this area to work on for this project using OSM data for this city.
 
 https://www.openstreetmap.org/node/16173236
 
