@@ -14,15 +14,15 @@ Irving, TX, United States
 - [https://www.openstreetmap.org/relation/5748832](https://www.openstreetmap.org/relation/5748832)
 
 <p align="center">
-  <img src=images/IrvingTX-W-LasColinas-area.png alt="LasColinas-area-IrvingTX" style="width: 350px;" style="height: 350px;" />
+  <img src=images/Irving-TX-area.png alt="Irving-TX-area" style="width: 350px;" style="height: 350px;" />
 </p>
 
-I selected the above area, Las Colinas, in Irving, Texas, for this project because this is where I've lived for many years now. Therefore, I was interested in this area's OSM 
+I selected the above area, Irving, Texas, for this project because this is where I've lived for many years now in the Dallas suburb of Irving, Texas. Therefore, I was interested in this area's OSM 
 dataset.
 
 
 ## Problems Encountered in the Map
-After initially downloading a small sample size of the Irving, Texas, area and running it against a provisional data.py file, I noticed five main problems with the data, which I will discuss in the following order:
+After initially downloading a small sample size of the city of Irving, Texas, and running it against a provisional data.py file, I noticed the following key problems with the data.
 
 
 - Abbreviated street name *(“N Macarthur Blvd”)*

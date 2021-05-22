@@ -1,4 +1,4 @@
 .github/**
-IrvingTX-W-LasColinas-Formatted.osm.xml
 *.csv
-IrvingTX-W-LasColinas-Queries.sql
+OSM-IrvingTX-Queries.sql
+irving_texas.osm

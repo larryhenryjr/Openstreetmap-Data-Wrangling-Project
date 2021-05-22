@@ -16,9 +16,11 @@ requirements. Also the cleaned data is stored in CSV files.
 - __csv-to-db.py__ : Python script containing code that exports each CSV file that was created as tables to be stored in a database. This database
 is used to perform sql queries for research.
 
-- __Get_Sample_OSM.ipynb__ : This file contains the code I use to obtain a subset of elements from the original OSM file.
+- __Get_OSM_Sample.ipynb__ : This file contains the code I use to obtain a subset of elements from the original OSM file.
 
-- __sample_IrvingTX-W-LasColinas.osm__ : This smaller sample OSM file is used in understanding the data involved and the basic structure of the code.
+- __irving_texas_osm.zip__ : Zip file containing the larger OSM file used in understanding the data involved and the basic structure of the code.
+
+- __sample_irving_texas.osm__ : This smaller sample OSM file is used in understanding the data involved and the basic structure of the code.
 I will use this subset of the larger file for auditing and data cleaning before proceeding to work on the larger OSM file.
 
 - __References.txt__ : Contains a list of Web sites, forums, blog posts, etc referred to in this submission

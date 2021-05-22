@@ -17,7 +17,7 @@ from collections import defaultdict
 import cerberus
 import schema
 
-OSMFILE = "sample_IrvingTX-W-LasColinas.osm"
+osmfile = "sample_irving_texas.osm"
 street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
 
 expected = ["Avenue", "Boulevard", "Bridge", "Center", "Circle", "Court", "Drive", "East", "Expressway", "Freeway", "Highway", "Lane", "Loop", 
@@ -48,7 +48,9 @@ mapping = { "Ave":"Avenue",
 			"Hill": "Hill",
 			"Hill.": "Hill",
 			"Hwy": "Highway",
-			"Hwy.": "Highway",			
+			"Hwy.": "Highway",
+            "Ln": "Lane",
+            "Ln.": "Lane",
             "Pkwy":"Parkway",
 			"Rd": "Road",
 			"Rd.": "Road",
@@ -144,7 +146,7 @@ def update_name(name, mapping):
 #         Preparing for Database - SQL               #
 # ================================================== #
 
-OSM_PATH = "sample_IrvingTX-W-LasColinas.osm"
+#OSM_PATH = "sample_IrvingTX-W-LasColinas.osm"
 
 NODES_PATH = "nodes.csv"
 NODE_TAGS_PATH = "nodes_tags.csv"
@@ -309,4 +311,4 @@ def process_map(file_in, validate):
 
 
 if __name__ == '__main__':
-    process_map(OSM_PATH, validate=True)
+    process_map(osmfile, validate=True)
