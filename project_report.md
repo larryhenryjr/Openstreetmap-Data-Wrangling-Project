@@ -105,11 +105,11 @@ def update_name(name, mapping):
 {"Avenue", "Boulevard", "Bridge", "Center", "Circle", "Court", "Drive", "East", "Expressway", "Freeway", "Highway", "Lane", "Loop", "National", "North", "Northeast", "Northwest", "Parkway", "Place", "Plaza", "Road", "Route", "South", "Southeast", "Southwest", "Square", "Street", "Terrace", "Trail", "Turnpike", "Way", "West"}
 
 ```
-
+<br>
 <blockquote>This updated all substrings in problematic address strings, such that:
 *“w Southlake Blvd”* becomes *“West Southlake Boulevard”*
 </blockquote>	
-
+<br>
 
 ## Sort cities by count, descending
 
@@ -150,17 +150,15 @@ University Park				1
   
 ```
 
-These results confirmed my suspicion that this metro extract would perhaps be more aptly named “Dallas/Fort Worth Metropolitan Area” for its inclusion of surrounding cities in the sprawl.
+<blockquote>These results confirmed my suspicion that this metro extract would perhaps be more aptly named “Dallas/Fort Worth Metropolitan Area” for its inclusion of surrounding cities in the sprawl.</blockquote>
 
 
 
 ## Converting the Data into CSV Files
 
-After the cleaning was completed, CSV files were created from the cleaned data in the OSM files using python script __csv-to-db.py__. The CSV files are namely nodes.csv, nodes_tags.csv, ways.csv, 
-ways_tags.csv and ways_nodes.csv.
+After the cleaning was completed, CSV files were created from the cleaned data in the OSM files using python script __csv-to-db.py__. The CSV files are namely nodes.csv, nodes_tags.csv, ways.csv, ways_tags.csv and ways_nodes.csv.
 
-Afterwards, the csv files were imported into a database called __irving_texas.db__ as tables with the names as nodes, nodes_tags, ways, ways_tags and ways_nodes. Here is the following 
-DBMS schema.
+Afterwards, the csv files were imported into a database called __irving_texas.db__ as tables with the names as nodes, nodes_tags, ways, ways_tags and ways_nodes. Here is the following DBMS schema.
 
 ```sql
 schema = {
@@ -226,7 +224,7 @@ schema = {
 }
 ```
 
-
+<br>
 
 # Data Overview and Additional Ideas
 
@@ -383,10 +381,10 @@ everyone sees that only a handful of power users are creating more than a majori
 Another suggestion that I think it would be great is if each tag in the OSM file contained an associated confidence score. The motivation behind this is to assure that other correctors or analyst can ignore 
 particular data and focus on auditing or cleaning up other data with data issues and low confidence scores.
 
-
+<br>
 # Additional Data Exploration
 
-## Top 10 Amenities
+### Top 10 Amenities
 
 ```SQL
 --Top 10 appearing amenities
@@ -413,7 +411,7 @@ waste_basket			8
 bar				5
 ```
 
-## Top Religion
+### Top Religion
 
 ```SQL
 --Biggest religion (no surprise here)
@@ -436,7 +434,7 @@ SELECT nodes_tags.value,
 `christian   34`
 
 
-## Most popular cuisines
+### Most popular cuisines
 
 ```SQL
 --Most popular cuisines
@@ -473,6 +471,7 @@ chinese			1
 cajun			1
 burger			1
 ```
+<br>
 
 # Conclusion
 <p>After cleaning the OSM data of Irving, Texas, it was clear that the area I chosen for this project is incomplete. However, it’s exciting to see contributors continue to grow year over year. Also, I believe it has been well cleaned for the purposes of this exercise. During the cleaning process, I programmatically cleaned up inconsistent street types and abbreviated street names. Next, I iteratively wrote the cleaned OSM data to CSV files before loading the files into a SQL database. Finally, I wrote database queries to review statistical information as well as to understand the structure of the data set. </p>
