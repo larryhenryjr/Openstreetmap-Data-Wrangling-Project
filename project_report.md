@@ -57,7 +57,7 @@ in data entries.
 # This function is used for cleaning the street names
 def update_name(name, mapping):
     
-unwanted = ['(',')','/', '[', ']', '.', ',']  # List of unwanted characters 
+	unwanted = ['(',')','/', '[', ']', '.', ',']  # List of unwanted characters 
     cname = ''                  # Create an empty string 
     
     # for loop to remove unwanted characters
@@ -473,6 +473,6 @@ burger			1
 ```
 
 # Conclusion
- After this review of the data it’s obvious that the Irving area is incomplete, though I believe it has been well cleaned for the purposes of this exercise. It interests me to notice a fair amount of GPS data makes it into OpenStreetMap.org on account of users’ efforts, whether by scripting a map editing bot or otherwise. With a rough GPS data processor in place and working together with a more robust data processor similar to data.pyI think it would be possible to input a great amount of cleaned data to OpenStreetMap.org.
-
-
+After cleaning the OSM data of Irving, Texas, it was clear that the area I chosen for this project is incomplete. However, it’s exciting to see contributors continue to grow year over year. Also, I believe it has been well cleaned for the purposes of this exercise. 
+During the cleaning process, I programmatically cleaned up inconsistent street types and abbreviated street names. Next, I iteratively wrote the cleaned OSM data to CSV files before loading the files into a SQL database. Finally, I wrote database queries to review statistical information as well as understand the structure of the data set.
+A suggestion for improving the data and its analysis is to ensure accurate data is being entered by contributors. In addition, for data consistency and integrity, I believe OSM should implement data quality rules that restrict what data can be entered. Overall, this was a very challenging and fun assignment.
