@@ -336,7 +336,7 @@ Andrew Matheny_import			234246
 Andrew Matheny				55462
 TheDude05_import			11362
 woodpeck_fixbot				10590
-Stephen214					7299
+Stephen214				7299
 Mark@MJS				5697
 j5f8k					3540
 fmmute					3080
@@ -462,10 +462,10 @@ sushi			2
 regional		2
 mexican			2
 thai			1
-tex-mex;mexican			1
+tex-mex;mexican		1
 tex-mex			1
 sandwich		1
-italian,pizza			1
+italian,pizza		1
 italian			1
 chinese			1
 cajun			1
