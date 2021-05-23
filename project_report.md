@@ -106,10 +106,9 @@ def update_name(name, mapping):
 
 ```
 
-This updated all substrings in problematic address strings, such that:
-*“w Southlake Blvd”*
-becomes
-*“West Southlake Boulevard”*
+<blockquote>This updated all substrings in problematic address strings, such that:
+*“w Southlake Blvd”* becomes *“West Southlake Boulevard”*
+</blockquote>	
 
 
 ## Sort cities by count, descending
@@ -476,10 +475,7 @@ burger			1
 ```
 
 # Conclusion
-<p>After cleaning the OSM data of Irving, Texas, it was clear that the area I chosen for this project is incomplete. However, it’s exciting to see contributors continue to grow year over year. Also, I believe it has been well cleaned for the purposes of this exercise. 
-During the cleaning process, I programmatically cleaned up inconsistent street types and abbreviated street names. Next, I iteratively wrote the cleaned OSM data to CSV files before loading the files into a SQL database. Finally, I wrote database queries to review 
-statistical information as well as understand the structure of the data set. </p><br>
+<p>After cleaning the OSM data of Irving, Texas, it was clear that the area I chosen for this project is incomplete. However, it’s exciting to see contributors continue to grow year over year. Also, I believe it has been well cleaned for the purposes of this exercise. During the cleaning process, I programmatically cleaned up inconsistent street types and abbreviated street names. Next, I iteratively wrote the cleaned OSM data to CSV files before loading the files into a SQL database. Finally, I wrote database queries to review statistical information as well as to understand the structure of the data set. </p>
+<br>
 <p>A suggestion for improving the data and its analysis is to ensure accurate data is being entered by contributors. I 
-would recommend adding a confidence level or score to each data that was entered. In addition, for data consistency and integrity, I believe OSM should implement data quality rules that 
-restrict what data can be entered. Last, I would also recommend creating a leaderboard or an incentive program to encourage more users to contribute to OpenStreetMap.org. Overall, this was 
-a very challenging and fun assignment.</p>
+would recommend adding a confidence level or score to each data that was entered. In addition, for data consistency and integrity, I believe OSM should implement data quality rules that restrict what data can be entered. Last, I would also recommend creating a leaderboard or an incentive program to encourage more users to contribute to OpenStreetMap.org. Overall, this was a very challenging and fun assignment.</p>
