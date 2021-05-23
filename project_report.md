@@ -38,6 +38,8 @@ After initially downloading a small sample size of the city of Irving, Texas, an
     <tag k="tiger:name_type" v="St" />
 	```
 
+<br>
+
 ## Problematic Characters
 
 Certain tags were found to contain problematic characters. These characters can result in troublesome data values that are either hard to read or process programatically. In 
@@ -47,6 +49,7 @@ order to exclude such tags from the dataset, a python regular expression was use
 
 The actual regular expression `[=\+/&<>;\'"\?%#$@\,\. \t\r\n]` looks for new lines, tabs, commas, single/double quotes, semi-colons, equal signs or characters like %,?,%,$,@,#. If any of these characters are found in the tags key, it is not included.
 
+<br>
 
 ## Function for Correcting Street Names
 
@@ -98,6 +101,7 @@ def update_name(name, mapping):
 	
 ```
 
+<br>
 
 *Note:* For the Mapping values, I created the following list of problematic names that were identified and names that may potentially cause issues into a dictionary for cleaning.
 
@@ -150,7 +154,7 @@ University Park				1
   
 ```
 
-<blockquote>These results confirmed my suspicion that this metro extract would perhaps be more aptly named “Dallas/Fort Worth Metropolitan Area” for its inclusion of surrounding cities in the sprawl.</blockquote>
+<blockquote>These results confirmed my suspicion that this metro extract would perhaps be more aptly named “Dallas/Fort Worth Metropolitan Area” for its inclusion of surrounding cities in the sprawl.</blockquote><br>
 
 
 
@@ -244,7 +248,7 @@ Irving-TX-area.png ----------------------------- 0.86 MB
 ```
 
 
-## Postal Codes
+### Postal Codes
 Postal codes contained 5­digit zip codes. There were no issues with the postal codes after grouping together with the following aggregator:
 
 ```sql
@@ -382,6 +386,7 @@ Another suggestion that I think it would be great is if each tag in the OSM file
 particular data and focus on auditing or cleaning up other data with data issues and low confidence scores.
 
 <br>
+
 # Additional Data Exploration
 
 ### Top 10 Amenities
