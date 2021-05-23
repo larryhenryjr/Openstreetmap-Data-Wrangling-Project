@@ -8,7 +8,7 @@ This repository consists of the following files :
 
 - __README.md__ : ReadMe file for this project containing an overal summary and details on files used to complete this project.
 
-- __project_report.md__ : The final project write-up documenting my data wrangling process and findings
+- __project_report.md__ : The final project write-up documenting my data wrangling process and findings. A PDF copy is also available in the PDF folder.
 
 - __data.py__ : Python script containing the codes for gathering and extracting data from the OpenStreet Map (OSM) file. Data cleansing and manipulation is conducted per project 
 requirements. Also the cleaned data is stored in CSV files.
