@@ -99,7 +99,7 @@ def update_name(name, mapping):
 ```
 
 
-*NOTE:* For the Mapping values, I created the following list of problematic names that were identified and names that may potentially cause issues into a dictionary for cleaning.
+*Note:* For the Mapping values, I created the following list of problematic names that were identified and names that may potentially cause issues into a dictionary for cleaning.
 
 ```javascript
 {"Avenue", "Boulevard", "Bridge", "Center", "Circle", "Court", "Drive", "East", "Expressway", "Freeway", "Highway", "Lane", "Loop", "National", "North", "Northeast", "Northwest", "Parkway", "Place", "Plaza", "Road", "Route", "South", "Southeast", "Southwest", "Square", "Street", "Terrace", "Trail", "Turnpike", "Way", "West"}
@@ -108,7 +108,7 @@ def update_name(name, mapping):
 
 This updated all substrings in problematic address strings, such that:
 *“w Southlake Blvd”*
-becomes:
+becomes
 *“West Southlake Boulevard”*
 
 
@@ -151,7 +151,7 @@ University Park				1
   
 ```
 
-These results confirmed my suspicion that this metro extract would perhaps be more aptly named “Dallas (/Fort Worth) Metropolitan Area” for its inclusion of surrounding cities in the sprawl.
+These results confirmed my suspicion that this metro extract would perhaps be more aptly named “Dallas/Fort Worth Metropolitan Area” for its inclusion of surrounding cities in the sprawl.
 
 
 
@@ -370,7 +370,7 @@ SELECT COUNT( * ) AS users_with_OnePost
 
 # Additional Ideas
 
-## Contributor Statistics and Suggestion
+## Contributor Statistics and Suggestions
 The contributions of users seems incredibly skewed, possibly due to automated versus manual map editing. The following are some user percentage statistics:
 
 - Top user contribution percentage (“Andrew Matheny_import”) 56.57%
@@ -380,6 +380,9 @@ The contributions of users seems incredibly skewed, possibly due to automated ve
 
 In the context of the OpenStreetMap, I agree that if user data were more prominently displayed, perhaps others would take an initiative in submitting more edits to the map. In addition, if 
 everyone sees that only a handful of power users are creating more than a majority of a given map. Maybe offering incentives,rewards, badges, or competing for a position in a leaderboard will help.
+
+Another suggestion that I think it would be great is if each tag in the OSM file contained an associated confidence score. The motivation behind this is to assure that other correctors or analyst can ignore 
+particular data and focus on auditing or cleaning up other data with data issues and low confidence scores.
 
 
 # Additional Data Exploration
@@ -474,5 +477,8 @@ burger			1
 
 # Conclusion
 After cleaning the OSM data of Irving, Texas, it was clear that the area I chosen for this project is incomplete. However, it’s exciting to see contributors continue to grow year over year. Also, I believe it has been well cleaned for the purposes of this exercise. 
-During the cleaning process, I programmatically cleaned up inconsistent street types and abbreviated street names. Next, I iteratively wrote the cleaned OSM data to CSV files before loading the files into a SQL database. Finally, I wrote database queries to review statistical information as well as understand the structure of the data set.
-A suggestion for improving the data and its analysis is to ensure accurate data is being entered by contributors. In addition, for data consistency and integrity, I believe OSM should implement data quality rules that restrict what data can be entered. Overall, this was a very challenging and fun assignment.
+During the cleaning process, I programmatically cleaned up inconsistent street types and abbreviated street names. Next, I iteratively wrote the cleaned OSM data to CSV files before loading the files into a SQL database. Finally, I wrote database queries to review 
+statistical information as well as understand the structure of the data set. A suggestion for improving the data and its analysis is to ensure accurate data is being entered by contributors. I 
+would recommend adding an confidence level or score to each data that was entered. In addition, for data consistency and integrity, I believe OSM should implement data quality rules that 
+restrict what data can be entered. Last, I would also recommend creating a leaderboard or an incentive program to encourage more users to contribute to OpenStreetMap.org. Overall, this was 
+a very challenging and fun assignment.
