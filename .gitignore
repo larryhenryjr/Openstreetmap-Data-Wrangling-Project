@@ -1,4 +1,6 @@
 .github/**
+*.pyc
 *.csv
 OSM-IrvingTX-Queries.sql
 irving_texas.osm
+irving_texas.db
