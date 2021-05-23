@@ -2,7 +2,8 @@
 
 
 ## Udacity Project Overview
-This project is part of Udacity's Data Analyst Nanodegree course for Data Wrangling. The main point of this project is to learn how to access data and perform 
+OpenStreetMap (OSM) is built by a community of mappers that contribute and maintain data about roads, trails, cafés, railway stations, and much more, all over the world. This 
+project is part of Udacity's Data Analyst Nanodegree course for Data Wrangling. The main point of this project is to learn how to access data and perform 
 data cleaning with Python. To start, I downloaded the OSM data first. Then, I accessed the XML data from the downloaded OpenStreet Map file. Next, I audited 
 several fields and performed some data cleaning while parsing the OSM into to five CSV files before importing the files to SQL tables. Last, the cleaned 
 data will then be imported into a DBMS or MongoDB. In this case, I used a DBMS and ran a few SQL queries on the cleaned data to complete the project.
@@ -18,52 +19,236 @@ Irving, TX, United States
 </p>
 
 I selected the above area, Irving, Texas, for this project because this is where I've lived for many years now in the Dallas suburb of Irving, Texas. Therefore, I was interested in this area's OSM 
-dataset.
+dataset by examaning the tags attached to its basics data structures (nodes, ways, and relations) found in the OSM file.
 
 
-## Problems Encountered in the Map
+## Problems Encountered in the OSM File
 After initially downloading a small sample size of the city of Irving, Texas, and running it against a provisional data.py file, I noticed the following key problems with the data.
 
 
-- Abbreviated street name *(“N Macarthur Blvd”)*
-- Inconsistent postal codes *(“NC28226”, “28226­0783”, “28226”)*
-- “Incorrect” postal codes (Charlotte area zip codes all begin with “282” however a large portion of all documented zip codes were outside this region.)
-- Second­ level `“k”` tags with the value `"type"`(which overwrites the element’s previously processed `node[“type”]field`).
+- Address contained abbreviated street name *(e.g. “N Macarthur Blvd”)*
+- Address contained special characters *(e.g. brackets '[]', commas ',', hyphens '-', periods '.', etc.)*
+- Key or “k” tags contained values in different languages such as Urdu, Hindi, etc.
+- Second­level `“k”` tags with the value `"type"`(which overwrites the element’s previously processed `node[“type”]field`).
 - Street names in second ­level `“k”` tags pulled from Tiger GPS data and divided into segments, in the following format:
 
 	```XML
-	<tag k="tiger:name_base" v="Stonewall"/> 
-	<tag k="tiger:name_direction_prefix" v="W"/> 
-	<tag k="tiger:name_type" v="St"/>
+    <tag k="tiger:name_base" v="16th;Burleson" />
+    <tag k="tiger:name_direction_prefix" v="NW" />
+    <tag k="tiger:name_type" v="St" />
 	```
 
-### Over­abbreviated Street Names
-Once the data was imported to SQL, some basic querying revealed street name abbreviations and postal code inconsistencies. To deal with correcting street names, I opted not use regular expressions, and instead iterated over each word in an address, correcting them to their respective mappings in audit.py using the following function:
+## Problematic Characters
 
-```python 
-def update(name, mapping): 
-	words = name.split()
-	for w in range(len(words)):
-		if words[w] in mapping:
-			if words[w­1].lower() not in ['suite', 'ste.', 'ste']: 
-				# For example, don't update 'Suite E' to 'Suite East'
-				words[w] = mapping[words[w]] name = " ".join(words)
-	return name
+Certain tags were found to contain problematic characters. These characters can result in troublesome data values that are either hard to read or process programatically. In 
+order to exclude such tags from the dataset, a python regular expression was used.
+
+`re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')`
+
+The actual regular expression `[=\+/&<>;\'"\?%#$@\,\. \t\r\n]` looks for new lines, tabs, commas, single/double quotes, semi-colons, equal signs or characters like %,?,%,$,@,#. If any of these characters are found in the tags key, it is not included.
+
+
+## Function for Correcting Street Names
+
+The function __update_name(name, mapping)__ is used to remove the problems encountered during the cleaning process. It rectifies the potential for human errors caused 
+in data entries.
+
+``` python    
+# This function is used for cleaning the street names
+def update_name(name, mapping):
+    
+	unwanted = ['(',')','/', '[', ']', '.', ',']  # List of unwanted characters 
+    cname = ''                  # Create an empty string 
+    
+    # for loop to remove unwanted characters
+    for i in range(len(name)):
+        if name[i] not in unwanted:
+            cname = cname + name[i]
+    
+    # Slicing to remove '-'
+    if cname[0]=='-':
+        cname = cname[1:]
+    if cname[-1]=='-' or cname[-1]==',':
+        cname = cname[:-1]
+    
+    # To remove postal codes from street name
+    if '-' in cname:
+        ch = cname.split('-')
+        if len(ch[1])>=4:
+            cname = ch[0]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    
+    # Capitalize the first letter of each street name and convert other letters to lower case
+    low_name = cname.lower()
+    if ' ' in low_name:
+        cname = ''
+        t = low_name.split(' ')
+        for i in t:
+            cname = cname + ' ' + i.capitalize()
+    else:
+        cname = low_name.capitalize()
+           
+    # Mapping 
+    k = mapping.keys()
+    key_list = list(k)
+    for abrev in key_list:
+        if abrev in cname.split():
+            cname = cname.replace(abrev,mapping[abrev])
+
+    return cname
+
+  ```
+
+*NOTE:* For the Mapping values, I created the following list of problematic names that were identified and names that may potentially cause issues into a dictionary for cleaning.
+
+```javascript
+{ "Avenue", "Boulevard", "Bridge", "Center", "Circle", "Court", "Drive", "East", "Expressway", "Freeway", "Highway", "Lane", "Loop", "National", "North", "Northeast", "Northwest", "Parkway", "Place", "Plaza", "Road", "Route", "South", "Southeast", "Southwest", "Square", "Street", "Terrace", "Trail", "Turnpike", "Way", "West"}
 ```
 
 This updated all substrings in problematic address strings, such that:
-*“S Tryon St Ste 105”*
+*“w Southlake Blvd”*
 becomes:
-*“South Tryon Street Suite 105”*
-
-### Postal Codes
-Postal code strings posed a different sort of problem, forcing a decision to strip all leading and trailing characters before and after the main 5­digit zip code. This effectively dropped all leading state characters (as in “NC28226”) and 4­digit zip code extensions following a hyphen (“28226­0783”). This 5­digit restriction allows for more consistent queries.
+*“West Southlake Boulevard”*
 
 
-Regardless, after standardizing inconsistent postal codes, some altogether “incorrect” (or perhaps misplaced?) postal codes surfaced when grouped together with this aggregator:
+## Sort cities by count, descending
 
 ```sql
-SELECT tags.value, COUNT(*) as count 
+sqlite> SELECT tags.value, COUNT(*) as count 
+FROM (SELECT * FROM nodes_tags UNION ALL 
+      SELECT * FROM ways_tags) tags
+WHERE tags.key = 'city'
+GROUP BY tags.value
+ORDER BY count DESC;
+```
+
+The following are the city results that were sorted by count and Tag.value for readability:
+
+```csv
+Tag.value	Count
+Dallas	139
+Irving	33
+Grapevine	20
+Grand Prairie	14
+Carrollton	12
+Southlake	12
+Coppell	11
+Colleyville	10
+Fort Worth	9
+Addison	8
+Euless	8
+Arlington	7
+Richardson	5
+Westlake	5
+Hurst	4
+Farmers Branch	3
+Bedford	2
+DFW Airport	2
+Keller	2
+North Richland Hills	1
+University Park	1
+  
+```
+
+These results confirmed my suspicion that this metro extract would perhaps be more aptly named “Dallas (/Fort Worth) Metropolitan Area” for its inclusion of surrounding cities in the sprawl.
+
+
+
+## Converting the Data into CSV Files
+
+After the cleaning was completed, CSV files were created from the cleaned data in the OSM files using python script __csv-to-db.py__. The CSV files are namely nodes.csv, nodes_tags.csv, ways.csv, 
+ways_tags.csv and ways_nodes.csv.
+
+Afterwards, the csv files were imported into a database called __irving_texas.db__ as tables with the names as nodes, nodes_tags, ways, ways_tags and ways_nodes. Here is the following 
+DBMS schema.
+
+```sql
+schema = {
+    'node': {
+        'type': 'dict',
+        'schema': {
+            'id': {'required': True, 'type': 'integer', 'coerce': int},
+            'lat': {'required': True, 'type': 'float', 'coerce': float},
+            'lon': {'required': True, 'type': 'float', 'coerce': float},
+            'user': {'required': True, 'type': 'string'},
+            'uid': {'required': True, 'type': 'integer', 'coerce': int},
+            'version': {'required': True, 'type': 'string'},
+            'changeset': {'required': True, 'type': 'integer', 'coerce': int},
+            'timestamp': {'required': True, 'type': 'string'}
+        }
+    },
+    'node_tags': {
+        'type': 'list',
+        'schema': {
+            'type': 'dict',
+            'schema': {
+                'id': {'required': True, 'type': 'integer', 'coerce': int},
+                'key': {'required': True, 'type': 'string'},
+                'value': {'required': True, 'type': 'string'},
+                'type': {'required': True, 'type': 'string'}
+            }
+        }
+    },
+    'way': {
+        'type': 'dict',
+        'schema': {
+            'id': {'required': True, 'type': 'integer', 'coerce': int},
+            'user': {'required': True, 'type': 'string'},
+            'uid': {'required': True, 'type': 'integer', 'coerce': int},
+            'version': {'required': True, 'type': 'string'},
+            'changeset': {'required': True, 'type': 'integer', 'coerce': int},
+            'timestamp': {'required': True, 'type': 'string'}
+        }
+    },
+    'way_nodes': {
+        'type': 'list',
+        'schema': {
+            'type': 'dict',
+            'schema': {
+                'id': {'required': True, 'type': 'integer', 'coerce': int},
+                'node_id': {'required': True, 'type': 'integer', 'coerce': int},
+                'position': {'required': True, 'type': 'integer', 'coerce': int}
+            }
+        }
+    },
+    'way_tags': {
+        'type': 'list',
+        'schema': {
+            'type': 'dict',
+            'schema': {
+                'id': {'required': True, 'type': 'integer', 'coerce': int},
+                'key': {'required': True, 'type': 'string'},
+                'value': {'required': True, 'type': 'string'},
+                'type': {'required': True, 'type': 'string'}
+            }
+        }
+    }
+}
+```
+
+
+
+# Data Overview and Additional Ideas
+
+## Files size
+```
+irving_texas_osm.zip (compressed) -------------- 62.47 MB
+irving_texas.osm ------------------------------- 803.58 MB
+irving_texas.db (database)---------------------- 46.13 MB
+nodes.csv -------------------------------------- 33.72 MB
+nodes_tags.csv --------------------------------- 0.28 MB
+ways.csv --------------------------------------- 3.45 MB
+ways_tags.csv ---------------------------------- 4.2 MB
+ways_nodes.csv --------------------------------- 10.37 MB
+sample_irving_texas.osm (in repo) -------------- 85.15 MB
+Irving-TX-area.png ----------------------------- 0.86 MB
+```
+
+
+## Postal Codes
+Postal codes contained 5­digit zip codes. There were no issues with the postal codes after grouping together with the following aggregator:
+
+```sql
+SELECT tags.value AS postCode, COUNT(*) as count 
 FROM (SELECT * FROM nodes_tags 
 	  UNION ALL 
       SELECT * FROM ways_tags) tags
@@ -72,216 +257,211 @@ GROUP BY tags.value
 ORDER BY count DESC;
 ```
 
-Here are the top ten results, beginning with the highest count:
+The following are the top ten postal code results, beginning with the highest count:
 
 ```sql
-value|count
-28205|900
-28208|388
-28206|268
-28202|204
-28204|196
-28216|174
-28211|148
-28203|120
-28209|104
-28207|86
+postCode	count
+76051	19
+76053	17
+76092	12
+75050	12
+75006	12
+75019	11
+76039	10
+76034	10
+75205	10
+75001	9
 ```
 
- These results were taken before accounting for Tiger GPS zip codes residing in second­ level “k” tags. Considering the relatively few documents that included postal codes, of those, it appears that out of the top ten, seven aren’t even in Charlotte, as marked by a “#”. That struck me as surprisingly high to be a blatant error, and found that the number one postal code and all others starting with“297”lie in Rock Hill, SC. So, I performed another aggregation to verify a certain suspicion...
-# Sort cities by count, descending
-
-```sql
-sqlite> SELECT tags.value, COUNT(*) as count 
-FROM (SELECT * FROM nodes_tags UNION ALL 
-      SELECT * FROM ways_tags) tags
-WHERE tags.key LIKE '%city'
-GROUP BY tags.value
-ORDER BY count DESC;
-```
-
-And, the results, edited for readability:
-
-```sql
-Rock Hill   111       
-Pineville   27        
-Charlotte   26        
-York        24        
-Matthews    10        
-Concord     4         
-3000        3         
-10          2         
-Lake Wylie  2         
-1           1         
-3           1         
-43          1         
-61          1         
-Belmont, N  1         
-Fort Mill,  1         
-```
-
-These results confirmed my suspicion that this metro extract would perhaps be more aptly named “Metrolina” or the “Charlotte Metropolitan Area” for its inclusion of surrounding cities in the sprawl. More importantly, three documents need to have their trailing state abbreviations stripped. So, these postal codes aren’t “incorrect,” but simply unexpected. However, one final case proved otherwise.
-A single zip code stood out as clearly erroneous. Somehow, a “48009” got into the dataset. Let’s display part of its document for closer inspection (for our purposes, only the “address” and “pos” fields are relevant):
-
-```sql
-sqlite> SELECT *
-FROM nodes 
-WHERE id IN (SELECT DISTINCT(id) FROM nodes_tags WHERE key='postcode' AND value='48009')
-```
-`1234706337|35.2134608|-80.8270161|movercash|433196|1|7784874|2011-04-06T13:16:06Z`
-
-`sqlite> SELECT * FROM nodes_tags WHERE id=1234706337 and type='addr';`
-
-```sql
-1234706337|housenumber|280|addr
-1234706337|postcode|48009|addr
-1234706337|street|North Old Woodward Avenue|addr
-```
-
- It turns out, *“280 North Old Woodward Avenue, 48009”* is in Birmingham, Michigan. All data in this document, including those not shown here, are internally consistent and verifiable, except for the latitude and longitude. These coordinates are indeed in Charlotte, NC. I’m not sure about the source of the error, but we can guess it was most likely sitting in front of a computer before this data entered the map. The document can be removed from the database easily enough.
-
-# Data Overview and Other Ideas
-This section contains basic statistics about the dataset, the MongoDB queries used to gather them, and some additional ideas about the data in context.
-
-### File sizes
-```
-charlotte.osm ......... 294 MB
-charlotte.db .......... 129 MB
-nodes.csv ............. 144 MB
-nodes_tags.csv ........ 0.64 MB
-ways.csv .............. 4.7 MB
-ways_tags.csv ......... 20 MB
-ways_nodes.cv ......... 35 MB  
-```  
 
 ### Number of nodes
+```SQL
+--Number of nodes
+SELECT COUNT(*) 
+  FROM nodes;
 ```
-sqlite> SELECT COUNT(*) FROM nodes;
-```
-1471350
+364223
 
 ### Number of ways
+```SQL
+--Number of ways
+SELECT COUNT(*) 
+  FROM ways;
 ```
-sqlite> SELECT COUNT(*) FROM ways;
-```
-84502
+50537
 
 ### Number of unique users
-```sql
-sqlite> SELECT COUNT(DISTINCT(e.uid))          
-FROM (SELECT uid FROM nodes UNION ALL SELECT uid FROM ways) e;
+```SQL
+--Number of ways
+SELECT COUNT(*) FROM ways;
+SELECT COUNT(DISTINCT (e.uid) ) AS unique_users
+  FROM (
+           SELECT uid
+             FROM nodes
+           UNION ALL
+           SELECT uid
+             FROM ways
+       ) 
+       AS e;
 ```
-337
+1408
 
 ### Top 10 contributing users
-```sql
-sqlite> SELECT e.user, COUNT(*) as num
-FROM (SELECT user FROM nodes UNION ALL SELECT user FROM ways) e
-GROUP BY e.user
-ORDER BY num DESC
-LIMIT 10;
+```SQL
+--Top 10 contributing users
+SELECT e.user,
+       COUNT( * ) AS num
+  FROM (
+           SELECT user
+             FROM nodes
+           UNION ALL
+           SELECT user
+             FROM ways
+       )
+       AS e
+ GROUP BY e.user
+ ORDER BY num DESC
+ LIMIT 10;
 ```
 
-```sql
-jumbanho    823324    
-woodpeck_f  481549    
-TIGERcnl    44981     
-bot-mode    32033     
-rickmastfa  18875     
-Lightning   16924     
-grossing    15424     
-gopanthers  14988     
-KristenK    11023     
-Lambertus   8066 
+```SQL
+user	num
+Andrew Matheny_import	234246
+Andrew Matheny	55462
+TheDude05_import	11362
+woodpeck_fixbot	10590
+Stephen214	7299
+Mark@MJS	5697
+j5f8k	3540
+fmmute	3080
+MapRogers	2523
+Jame Retief	2217
 ```
  
 ### Number of users appearing only once (having 1 post)
-```sql
-sqlite> SELECT COUNT(*) 
-FROM
-    (SELECT e.user, COUNT(*) as num
-     FROM (SELECT user FROM nodes UNION ALL SELECT user FROM ways) e
-     GROUP BY e.user
-     HAVING num=1)  u;
+```SQL
+--Number of users appearing only once (having 1 post)
+SELECT COUNT( * ) AS users_with_OnePost
+  FROM (
+           SELECT e.user,
+                  COUNT( * ) AS num
+             FROM (
+                      SELECT user
+                        FROM nodes
+                      UNION ALL
+                      SELECT user
+                        FROM ways
+                  )
+                  e
+            GROUP BY e.user
+           HAVING num = 1
+       )
+      AS u;
 ```
-56
+219
+
+
 
 # Additional Ideas
 
-## Contributor statistics and gamification suggestion 
-The contributions of users seems incredibly skewed, possibly due to automated versus manual map editing (the word “bot” appears in some usernames). Here are some user percentage statistics:
+## Contributor Statistics and Suggestion
+The contributions of users seems incredibly skewed, possibly due to automated versus manual map editing. The following are some user percentage statistics:
 
-- Top user contribution percentage (“jumbanho”) 52.92%
-- Combined top 2 users' contribution (“jumbanho” and “woodpeck_fixbot”) 83.87%
-- Combined Top 10 users contribution
-94.3%
-- Combined number of users making up only 1% of posts 287 (about 85% of all users)
+- Top user contribution percentage (“Andrew Matheny_import”) 56.57%
+- Combined top 2 users' contribution (“Andrew Matheny_import” and “Andrew Matheny”) 69.97%
+- Combined Top 10 users contribution  80.61%
+- Combined number of users making up only 1% of posts 219
 
-Thinking about these user percentages, I’m reminded of “gamification” as a motivating force for contribution. In the context of the OpenStreetMap, if user data were more prominently displayed, perhaps others would take an initiative in submitting more edits to the map. And, if everyone sees that only a handful of power users are creating more than 90% a of given map, that might spur the creation of more efficient bots, especially if certain gamification elements were present, such as rewards, badges, or a leaderboard. 
+In the context of the OpenStreetMap, I agree that if user data were more prominently displayed, perhaps others would take an initiative in submitting more edits to the map. In addition, if 
+everyone sees that only a handful of power users are creating more than a majority of a given map. Maybe offering incentives,rewards, badges, or competing for a position in a leaderboard will help.
 
-## Additional Data Exploration
 
-### Top 10 appearing amenities
+# Additional Data Exploration
 
-```sql
-sqlite> SELECT value, COUNT(*) as num
-FROM nodes_tags
-WHERE key='amenity'
-GROUP BY value
-ORDER BY num DESC
-LIMIT 10;
+## Top 10 Amenities
+
+```SQL
+--Top 10 appearing amenities
+SELECT value,
+       COUNT( * ) AS num
+  FROM nodes_tags
+ WHERE [key] = 'amenity'
+ GROUP BY value
+ ORDER BY num DESC
+ LIMIT 10;
 ```
 
 ```sql
-place_of_worship  580       
-school            402       
-restaurant        80        
-grave_yard        75        
-parking           63        
-fast_food         51        
-fire_station      48        
-fuel              31        
-bench             30        
-library           28 
+value	num
+parking_entrance	70
+restaurant	42
+place_of_worship	35
+bench	30
+fast_food	24
+fountain	17
+cafe	17
+waste_disposal	13
+waste_basket	8
+bar	5
 ```
 
-### Biggest religion (no surprise here)
+## Top Religion
 
-```sql
-sqlite> SELECT nodes_tags.value, COUNT(*) as num
-FROM nodes_tags 
-    JOIN (SELECT DISTINCT(id) FROM nodes_tags WHERE value='place_of_worship') i
-    ON nodes_tags.id=i.id
-WHERE nodes_tags.key='religion'
-GROUP BY nodes_tags.value
-ORDER BY num DESC
-LIMIT 1;
+```SQL
+--Biggest religion (no surprise here)
+SELECT nodes_tags.value,
+       COUNT( * ) AS num
+  FROM nodes_tags
+       JOIN
+       (
+           SELECT DISTINCT (id) 
+             FROM nodes_tags
+            WHERE value = 'place_of_worship'
+       )
+       i ON nodes_tags.id = i.id
+ WHERE nodes_tags.[key] = 'religion'
+ GROUP BY nodes_tags.value
+ ORDER BY num DESC
+ LIMIT 1;
 ```
-`christian   571`
+`christian   34`
 
-### Most popular cuisines
+## Most popular cuisines
 
-```sql
-sqlite> SELECT nodes_tags.value, COUNT(*) as num
-FROM nodes_tags 
-    JOIN (SELECT DISTINCT(id) FROM nodes_tags WHERE value='restaurant') i
-    ON nodes_tags.id=i.id
-WHERE nodes_tags.key='cuisine'
-GROUP BY nodes_tags.value
-ORDER BY num DESC;
+```SQL
+--Most popular cuisines
+SELECT nodes_tags.value,
+       COUNT( * ) AS num
+  FROM nodes_tags
+       JOIN
+       (
+           SELECT DISTINCT (id) 
+             FROM nodes_tags
+            WHERE value = 'restaurant'
+       )
+       i ON nodes_tags.id = i.id
+ WHERE nodes_tags.[key] = 'cuisine'
+ GROUP BY nodes_tags.value
+ ORDER BY num DESC;
 ```
 
-```sql
-american    9         
-pizza       5         
-steak_hous  4         
-chinese     3         
-japanese    3         
-mexican     3         
-thai        3         
-italian     2         
-sandwich    2         
-barbecue    1
+```SQL
+value	num
+pizza	4
+asian	4
+american	4
+sushi	2
+regional	2
+mexican	2
+thai	1
+tex-mex;mexican	1
+tex-mex	1
+sandwich	1
+italian,pizza	1
+italian	1
+chinese	1
+cajun	1
+burger	1
 ```
 
 # Conclusion

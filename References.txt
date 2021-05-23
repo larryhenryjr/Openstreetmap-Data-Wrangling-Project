@@ -13,6 +13,7 @@ https://knowledge.udacity.com/questions/332545
 
 http://wiki.openstreetmap.org/wiki/Map_Features
 http://wiki.openstreetmap.org/wiki/OSM_XML
+https://wiki.openstreetmap.org/wiki/Elements
 
 
 4. To help in creating my code for data cleaning and auditing the OSM file, I used the following link.

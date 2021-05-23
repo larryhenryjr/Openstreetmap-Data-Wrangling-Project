@@ -102,7 +102,7 @@ def audit(osmfile):
 # This function is used for cleaning the street names
 def update_name(name, mapping):
     
-    unwanted = ['(',')','/']  # List of unwanted characters 
+    unwanted = ['(',')','/', '[', ']', '.', ',']  # List of unwanted characters
     cname = ''                  # Create an empty string 
     
     # for loop to remove unwanted characters
