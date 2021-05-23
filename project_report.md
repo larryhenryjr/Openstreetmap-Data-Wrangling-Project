@@ -18,8 +18,7 @@ Irving, TX, United States
   <img src=images/Irving-TX-area.png alt="Irving-TX-area" style="width: 350px;" style="height: 350px;" />
 </p>
 
-I selected the above area, Irving, Texas, for this project because this is where I've lived for many years now in the Dallas suburb of Irving, Texas. Therefore, I was interested in this area's OSM 
-dataset by examaning the tags attached to its basics data structures (nodes, ways, and relations) found in the OSM file.
+<blockquote>I selected the above area, Irving, Texas, for this project because this is where I've lived for many years now in the Dallas suburb of Irving, Texas. Therefore, I was interested in this area's OSM dataset by examaning the tags attached to its basics data structures (nodes, ways, and relations) found in the OSM file.</blockquote><br>
 
 
 ## Problems Encountered in the OSM File
@@ -232,7 +231,7 @@ schema = {
 
 # Data Overview and Additional Ideas
 
-## Files size
+### Files size
 ```
 irving_texas_osm.zip (compressed) -------------- 62.47 MB
 irving_texas.osm ------------------------------- 803.58 MB
@@ -247,6 +246,7 @@ Irving-TX-area.png ----------------------------- 0.86 MB
 
 ```
 
+<br>
 
 ### Postal Codes
 Postal codes contained 5­digit zip codes. There were no issues with the postal codes after grouping together with the following aggregator:
