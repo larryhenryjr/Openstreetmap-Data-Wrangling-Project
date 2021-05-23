@@ -130,7 +130,7 @@ Tag.value				Count
 Dallas					139
 Irving					33
 Grapevine				20
-Grand Prairie			14
+Grand Prairie				14
 Carrollton				12
 Southlake				12
 Coppell					11
@@ -142,12 +142,12 @@ Arlington				7
 Richardson				5
 Westlake				5
 Hurst					4
-Farmers Branch			3
+Farmers Branch				3
 Bedford					2
 DFW Airport				2
 Keller					2
-North Richland Hills	1
-University Park			1
+North Richland Hills			1
+University Park				1
   
 ```
 
@@ -283,8 +283,7 @@ postCode	count
 SELECT COUNT(*) 
   FROM nodes;
 ```
-
-`364223
+`364223`
 
 
 ### Number of ways
@@ -293,8 +292,7 @@ SELECT COUNT(*)
 SELECT COUNT(*) 
   FROM ways;
 ```
-
-`50537
+`50537`
 
 
 ### Number of unique users
@@ -311,7 +309,8 @@ SELECT COUNT(DISTINCT (e.uid) ) AS unique_users
        ) 
        AS e;
 ```
-`1408
+`1408`
+
 
 ### Top 10 contributing users
 ```SQL
@@ -333,11 +332,11 @@ SELECT e.user,
 
 ```SQL
 user					num
-Andrew Matheny_import	234246
-Andrew Matheny			55462
-TheDude05_import		11362
-woodpeck_fixbot			10590
-Stephen214				7299
+Andrew Matheny_import			234246
+Andrew Matheny				55462
+TheDude05_import			11362
+woodpeck_fixbot				10590
+Stephen214					7299
 Mark@MJS				5697
 j5f8k					3540
 fmmute					3080
@@ -365,7 +364,7 @@ SELECT COUNT( * ) AS users_with_OnePost
        )
       AS u;
 ```
-`219
+`219`
 
 
 
@@ -400,16 +399,16 @@ SELECT value,
 
 ```sql
 value				num
-parking_entrance	70
+parking_entrance		70
 restaurant			42
-place_of_worship	35
+place_of_worship		35
 bench				30
 fast_food			24
 fountain			17
 cafe				17
-waste_disposal		13
-waste_basket		8
-bar					5
+waste_disposal			13
+waste_basket			8
+bar				5
 ```
 
 ## Top Religion
@@ -463,10 +462,10 @@ sushi			2
 regional		2
 mexican			2
 thai			1
-tex-mex;mexican	1
+tex-mex;mexican			1
 tex-mex			1
 sandwich		1
-italian,pizza	1
+italian,pizza			1
 italian			1
 chinese			1
 cajun			1
