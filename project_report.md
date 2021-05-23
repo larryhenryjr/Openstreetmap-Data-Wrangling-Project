@@ -53,7 +53,7 @@ The actual regular expression `[=\+/&<>;\'"\?%#$@\,\. \t\r\n]` looks for new lin
 The function __update_name(name, mapping)__ is used to remove the problems encountered during the cleaning process. It rectifies the potential for human errors caused 
 in data entries.
 
-``` python    
+```python    
 # This function is used for cleaning the street names
 def update_name(name, mapping):
     
@@ -95,13 +95,15 @@ def update_name(name, mapping):
             cname = cname.replace(abrev,mapping[abrev])
 
     return cname
+	
+```
 
-  ```
 
 *NOTE:* For the Mapping values, I created the following list of problematic names that were identified and names that may potentially cause issues into a dictionary for cleaning.
 
 ```javascript
-{ "Avenue", "Boulevard", "Bridge", "Center", "Circle", "Court", "Drive", "East", "Expressway", "Freeway", "Highway", "Lane", "Loop", "National", "North", "Northeast", "Northwest", "Parkway", "Place", "Plaza", "Road", "Route", "South", "Southeast", "Southwest", "Square", "Street", "Terrace", "Trail", "Turnpike", "Way", "West"}
+{"Avenue", "Boulevard", "Bridge", "Center", "Circle", "Court", "Drive", "East", "Expressway", "Freeway", "Highway", "Lane", "Loop", "National", "North", "Northeast", "Northwest", "Parkway", "Place", "Plaza", "Road", "Route", "South", "Southeast", "Southwest", "Square", "Street", "Terrace", "Trail", "Turnpike", "Way", "West"}
+
 ```
 
 This updated all substrings in problematic address strings, such that:
