@@ -6,9 +6,9 @@ to SQL tables where I used SQL to query the data.
 
 This repository consists of the following files : 
 
-- __README.md__ : ReadMe file for this project containing an overal summary and details on the work that was done to complete this project.
+- __README.md__ : ReadMe file for this project containing an overal summary and details on files used to complete this project.
 
-- __project_report.md__ : The final project report that documents the work done on this project including the data wrangling process.
+- __project_report.md__ : The final project write-up documenting my data wrangling process and findings
 
 - __data.py__ : Python script containing the codes for gathering and extracting data from the OpenStreet Map (OSM) file. Data cleansing and manipulation is conducted per project 
 requirements. Also the cleaned data is stored in CSV files.
@@ -22,5 +22,7 @@ is used to perform sql queries for research.
 
 - __sample_irving_texas.osm__ : This smaller sample OSM file is used in understanding the data involved and the basic structure of the code.
 I will use this subset of the larger file for auditing and data cleaning before proceeding to work on the larger OSM file.
+
+- __schema.py__ : The schema used for my SQL database
 
 - __References.txt__ : Contains a list of Web sites, forums, blog posts, etc referred to in this submission
