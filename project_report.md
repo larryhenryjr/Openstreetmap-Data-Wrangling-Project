@@ -57,7 +57,7 @@ in data entries.
 # This function is used for cleaning the street names
 def update_name(name, mapping):
     
-	unwanted = ['(',')','/', '[', ']', '.', ',']  # List of unwanted characters 
+unwanted = ['(',')','/', '[', ']', '.', ',']  # List of unwanted characters 
     cname = ''                  # Create an empty string 
     
     # for loop to remove unwanted characters
@@ -473,6 +473,6 @@ burger			1
 ```
 
 # Conclusion
- After this review of the data it’s obvious that the Charlotte area is incomplete, though I believe it has been well cleaned for the purposes of this exercise. It interests me to notice a fair amount of GPS data makes it into OpenStreetMap.org on account of users’ efforts, whether by scripting a map editing bot or otherwise. With a rough GPS data processor in place and working together with a more robust data processor similar to data.pyI think it would be possible to input a great amount of cleaned data to OpenStreetMap.org.
+ After this review of the data it’s obvious that the Irving area is incomplete, though I believe it has been well cleaned for the purposes of this exercise. It interests me to notice a fair amount of GPS data makes it into OpenStreetMap.org on account of users’ efforts, whether by scripting a map editing bot or otherwise. With a rough GPS data processor in place and working together with a more robust data processor similar to data.pyI think it would be possible to input a great amount of cleaned data to OpenStreetMap.org.
 
 
