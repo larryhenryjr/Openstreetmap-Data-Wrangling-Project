@@ -125,29 +125,29 @@ ORDER BY count DESC;
 
 The following are the city results that were sorted by count and Tag.value for readability:
 
-```csv
-Tag.value	Count
-Dallas	139
-Irving	33
-Grapevine	20
-Grand Prairie	14
-Carrollton	12
-Southlake	12
-Coppell	11
-Colleyville	10
-Fort Worth	9
-Addison	8
-Euless	8
-Arlington	7
-Richardson	5
-Westlake	5
-Hurst	4
-Farmers Branch	3
-Bedford	2
-DFW Airport	2
-Keller	2
+```sql
+Tag.value				Count
+Dallas					139
+Irving					33
+Grapevine				20
+Grand Prairie			14
+Carrollton				12
+Southlake				12
+Coppell					11
+Colleyville				10
+Fort Worth				9
+Addison					8
+Euless					8
+Arlington				7
+Richardson				5
+Westlake				5
+Hurst					4
+Farmers Branch			3
+Bedford					2
+DFW Airport				2
+Keller					2
 North Richland Hills	1
-University Park	1
+University Park			1
   
 ```
 
@@ -243,6 +243,7 @@ ways_tags.csv ---------------------------------- 4.2 MB
 ways_nodes.csv --------------------------------- 10.37 MB
 sample_irving_texas.osm (in repo) -------------- 85.15 MB
 Irving-TX-area.png ----------------------------- 0.86 MB
+
 ```
 
 
@@ -263,16 +264,16 @@ The following are the top ten postal code results, beginning with the highest co
 
 ```sql
 postCode	count
-76051	19
-76053	17
-76092	12
-75050	12
-75006	12
-75019	11
-76039	10
-76034	10
-75205	10
-75001	9
+76051		19
+76053		17
+76092		12
+75050		12
+75006		12
+75019		11
+76039		10
+76034		10
+75205		10
+75001		9
 ```
 
 
@@ -282,7 +283,9 @@ postCode	count
 SELECT COUNT(*) 
   FROM nodes;
 ```
-364223
+
+`364223
+
 
 ### Number of ways
 ```SQL
@@ -290,7 +293,9 @@ SELECT COUNT(*)
 SELECT COUNT(*) 
   FROM ways;
 ```
-50537
+
+`50537
+
 
 ### Number of unique users
 ```SQL
@@ -306,7 +311,7 @@ SELECT COUNT(DISTINCT (e.uid) ) AS unique_users
        ) 
        AS e;
 ```
-1408
+`1408
 
 ### Top 10 contributing users
 ```SQL
@@ -327,17 +332,17 @@ SELECT e.user,
 ```
 
 ```SQL
-user	num
+user					num
 Andrew Matheny_import	234246
-Andrew Matheny	55462
-TheDude05_import	11362
-woodpeck_fixbot	10590
-Stephen214	7299
-Mark@MJS	5697
-j5f8k	3540
-fmmute	3080
-MapRogers	2523
-Jame Retief	2217
+Andrew Matheny			55462
+TheDude05_import		11362
+woodpeck_fixbot			10590
+Stephen214				7299
+Mark@MJS				5697
+j5f8k					3540
+fmmute					3080
+MapRogers				2523
+Jame Retief				2217
 ```
  
 ### Number of users appearing only once (having 1 post)
@@ -360,7 +365,7 @@ SELECT COUNT( * ) AS users_with_OnePost
        )
       AS u;
 ```
-219
+`219
 
 
 
@@ -394,17 +399,17 @@ SELECT value,
 ```
 
 ```sql
-value	num
+value				num
 parking_entrance	70
-restaurant	42
+restaurant			42
 place_of_worship	35
-bench	30
-fast_food	24
-fountain	17
-cafe	17
-waste_disposal	13
-waste_basket	8
-bar	5
+bench				30
+fast_food			24
+fountain			17
+cafe				17
+waste_disposal		13
+waste_basket		8
+bar					5
 ```
 
 ## Top Religion
@@ -426,7 +431,9 @@ SELECT nodes_tags.value,
  ORDER BY num DESC
  LIMIT 1;
 ```
+
 `christian   34`
+
 
 ## Most popular cuisines
 
@@ -448,22 +455,22 @@ SELECT nodes_tags.value,
 ```
 
 ```SQL
-value	num
-pizza	4
-asian	4
-american	4
-sushi	2
-regional	2
-mexican	2
-thai	1
+value			num
+pizza			4
+asian			4
+american		4
+sushi			2
+regional		2
+mexican			2
+thai			1
 tex-mex;mexican	1
-tex-mex	1
-sandwich	1
+tex-mex			1
+sandwich		1
 italian,pizza	1
-italian	1
-chinese	1
-cajun	1
-burger	1
+italian			1
+chinese			1
+cajun			1
+burger			1
 ```
 
 # Conclusion
