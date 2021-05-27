@@ -235,12 +235,12 @@ schema = {
 ```
 irving_texas_osm.zip (compressed) -------------- 62.47 MB
 irving_texas.osm ------------------------------- 803.58 MB
-irving_texas.db (database)---------------------- 46.13 MB
-nodes.csv -------------------------------------- 33.72 MB
-nodes_tags.csv --------------------------------- 0.28 MB
-ways.csv --------------------------------------- 3.45 MB
-ways_tags.csv ---------------------------------- 4.2 MB
-ways_nodes.csv --------------------------------- 10.37 MB
+irving_texas.db (database)---------------------- 47.24 MB
+nodes.csv -------------------------------------- 32.93 MB
+nodes_tags.csv --------------------------------- 0.27 MB
+ways.csv --------------------------------------- 3.37 MB
+ways_tags.csv ---------------------------------- 4.11 MB
+ways_nodes.csv --------------------------------- 10.13 MB
 sample_irving_texas.osm (in repo) -------------- 85.15 MB
 Irving-TX-area.png ----------------------------- 0.86 MB
 
@@ -383,7 +383,8 @@ In the context of the OpenStreetMap, I agree that if user data were more promine
 everyone sees that only a handful of power users are creating more than a majority of a given map. Maybe offering incentives,rewards, badges, or competing for a position in a leaderboard will help.
 
 Another suggestion that I think it would be great is if each tag in the OSM file contained an associated confidence score. The motivation behind this is to assure that other correctors or analyst can ignore 
-particular data and focus on auditing or cleaning up other data with data issues and low confidence scores.
+particular data and focus on auditing or cleaning up other data with data issues and low confidence scores. Another benefit is more users can view OSM data as a highly reliable source. However, with this approach,
+implementing a confidence score become a major and ongoing project. In addition, a cost/benefit analysis would need to be conducted to weigh the benefits and negative impacts to implementing this model.
 
 <br>
 
@@ -481,5 +482,4 @@ burger			1
 # Conclusion
 <p>After cleaning the OSM data of Irving, Texas, it was clear that the area I chosen for this project is incomplete. However, it’s exciting to see contributors continue to grow year over year. Also, I believe it has been well cleaned for the purposes of this exercise. During the cleaning process, I programmatically cleaned up inconsistent street types and abbreviated street names. Next, I iteratively wrote the cleaned OSM data to CSV files before loading the files into a SQL database. Finally, I wrote database queries to review statistical information as well as to understand the structure of the data set. </p>
 <br>
-<p>A suggestion for improving the data and its analysis is to ensure accurate data is being entered by contributors. I 
-would recommend adding a confidence level or score to each data that was entered. In addition, for data consistency and integrity, I believe OSM should implement data quality rules that restrict what data can be entered. Last, I would also recommend creating a leaderboard or an incentive program to encourage more users to contribute to OpenStreetMap.org. Overall, this was a very challenging and fun assignment.</p>
+<p>As mentioned previously, a suggestion for improving the data and its analysis is to ensure accurate data is being entered by contributors. I would recommend adding a confidence level or score to each data that was entered. In addition, for data consistency and integrity, I believe OSM should implement data quality rules that restrict what data can be entered. Last, I would also recommend creating a leaderboard or an incentive program to encourage more users to contribute to OpenStreetMap.org. Overall, this was a very challenging and fun assignment.</p>

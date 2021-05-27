@@ -101,6 +101,7 @@ def audit(osmfile):
 
 # This function is used for cleaning the street names
 def update_name(name, mapping):
+    """Function is used for cleaning the street names"""
     
     unwanted = ['(',')','/', '[', ']', '.', ',']  # List of unwanted characters
     cname = ''                  # Create an empty string 
@@ -112,6 +113,7 @@ def update_name(name, mapping):
     
     # Slicing to remove '-'
     if cname[0]=='-':
+        print("2. Slicing to remove '-'")
         cname = cname[1:]
     if cname[-1]=='-' or cname[-1]==',':
         cname = cname[:-1]
@@ -167,10 +169,9 @@ WAY_TAGS_FIELDS = ['id', 'key', 'value', 'type']
 WAY_NODES_FIELDS = ['id', 'node_id', 'position']
 
 
-def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIELDS,
-                  problem_chars=PROBLEMCHARS, default_tag_type='regular'):
-    """Clean and shape node or way XML element to Python dict"""
-
+def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIELDS, problem_chars=PROBLEMCHARS, default_tag_type='regular'):
+    """Clean and shape node or way XML element to Python dict 'shape_element()' function edits a single element (parent and children) one at a time. Called by the 'process_map()' function"""
+      
     node_attribs = {}
     way_attribs = {}
     way_nodes = []
@@ -179,10 +180,27 @@ def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIE
     if element.tag == 'node':
         for i in node_attr_fields:
             node_attribs[i]=element.attrib[i]
-        
+                
         for next_tag in element.iter('tag'):
+            node_tag = {}
+            
             if PROBLEMCHARS.match(next_tag.attrib['k']):
-                break
+                continue
+            
+            elif LOWER_COLON.match(next_tag.attrib['k']):
+                node_tag["id"] = element.attrib['id']                
+                node_tag["type"] = next_tag.attrib['k'].split(":", 1) [0]
+                node_tag["key"] = next_tag.attrib['k'].split(":", 1) [1]
+                                
+                # use cleaning function:
+                if next_tag.attrib["k"] == 'addr:street':
+                    node_tag["value"] = update_name(next_tag.attrib['v'], mapping)
+
+                # otherwise:
+                else:
+                    node_tag["value"] = next_tag.attrib['v']  
+                tags.append(node_tag)
+            
             else:
                 tag_elements = {}
                 tag_elements['id'] = element.attrib['id']
@@ -204,8 +222,25 @@ def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIE
             way_attribs[i]=element.attrib[i]
         
         for next_tag in element.iter('tag'):
+            way_tag = {}
+
             if PROBLEMCHARS.match(next_tag.attrib['k']):
-                    break
+                continue
+                
+            elif LOWER_COLON.match(next_tag.attrib['k']):
+                way_tag["type"] = next_tag.attrib['k'].split(":", 1) [0]
+                way_tag["key"] = next_tag.attrib['k'].split(":", 1) [1]
+                way_tag["id"] = element.attrib['id']
+                
+                # use cleaning function:
+                if next_tag.attrib["k"] == 'addr:street':
+                    way_tag["value"] = update_name(next_tag.attrib['v'], mapping)
+                
+                # otherwise:
+                else:
+                    way_tag["value"] = next_tag.attrib['v']
+                tags.append(way_tag)
+                
             else:
                 tag_elements = {}
                 tag_elements['id'] = element.attrib['id']
@@ -227,7 +262,7 @@ def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIE
             waynd_dt['position'] = pos
             pos += 1
             way_nodes.append(waynd_dt)
-            
+
         return({'way': way_attribs, 'way_nodes': way_nodes, 'way_tags': tags})
 
 
