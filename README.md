@@ -1,4 +1,4 @@
-# Udacity OpenStreet Map Project
+# OpenStreet Map Project
 
 As part of the Udacity Data Analyst Nanodegree course for Data Wrangling, I created this repo was to house my final work files for the OpenStreet Map (OSM) project.
 In this project, I downloaded OSM data, audited several fields, iteratively cleaned the data while parsing the OSM into to five CSV files before importing the CSVs 
